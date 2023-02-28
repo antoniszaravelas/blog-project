@@ -6,19 +6,24 @@ import User from './components/User';
 
 function App() {
   return (
-    <Routes>
-      <Route path="/" element={<Home />} />
-      <Route
-        path="/post/:id/comments"
-        element={
-          <Comments url="https://jsonplaceholder.typicode.com/comments" />
-        }
-      />
-      <Route
-        path="/user/:id"
-        element={<User url="https://jsonplaceholder.typicode.com/users" />}
-      />
-    </Routes>
+    <>
+      <a className="text-white bg-black" href="/">
+        home
+      </a>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route
+          path="/post/:id/comments"
+          element={
+            <Comments url="https://jsonplaceholder.typicode.com/comments" />
+          }
+        />
+        <Route
+          path="/user/:id"
+          element={<User url="https://jsonplaceholder.typicode.com/users" />}
+        />
+      </Routes>
+    </>
   );
 }
 

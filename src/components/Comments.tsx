@@ -21,12 +21,13 @@ const Comments: React.FC<CommentsProps> = ({ url }) => {
     <Container>
       <Title>Comments</Title>
       <div className="flex flex-wrap border">
-        {postComments.map((comment) => (
-          <>
-            <div className="text-white p-2 w-1/2">{comment.name}</div>
-            <div className="text-white p-2 w-1/2">{comment.body}</div>
-          </>
-        ))}
+        {postComments &&
+          postComments.map((comment) => (
+            <>
+              <div className="text-white p-2 w-1/2">{comment.name}</div>
+              <div className="text-white p-2 w-1/2">{comment.body}</div>
+            </>
+          ))}
       </div>
     </Container>
   );
