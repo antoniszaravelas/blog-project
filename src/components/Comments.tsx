@@ -23,10 +23,10 @@ const Comments: React.FC<CommentsProps> = ({ url }) => {
       <div className="flex flex-wrap border">
         {postComments &&
           postComments.map((comment) => (
-            <>
+            <div key={comment.name}>
               <div className="text-white p-2 w-1/2">{comment.name}</div>
               <div className="text-white p-2 w-1/2">{comment.body}</div>
-            </>
+            </div>
           ))}
       </div>
     </Container>

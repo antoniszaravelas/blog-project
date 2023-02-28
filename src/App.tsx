@@ -6,7 +6,7 @@ import User from './components/User';
 
 function App() {
   return (
-    <>
+    <div className="bg-zinc-900 h-screen">
       <a className="text-white bg-black" href="/">
         home
       </a>
@@ -23,7 +23,7 @@ function App() {
           element={<User url="https://jsonplaceholder.typicode.com/users" />}
         />
       </Routes>
-    </>
+    </div>
   );
 }
 
