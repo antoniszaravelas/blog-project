@@ -20,3 +20,16 @@ export const Paragraph: React.FC<TypographyProps> = ({
 }) => {
   return <div className={`font-serif ${className}`}>{children}</div>;
 };
+
+export const Title: React.FC<TypographyProps> = ({
+  children,
+  className = '',
+}) => {
+  return (
+    <div
+      className={`font-serif text-white text-5xl text-center mb-10 ${className}`}
+    >
+      {children}
+    </div>
+  );
+};

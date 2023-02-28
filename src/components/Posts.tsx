@@ -7,12 +7,22 @@ const Posts = () => {
     []
   );
 
+  const handleClick = (event: React.MouseEvent<HTMLElement>, id: number) => {
+    console.log(id);
+  };
+
   return (
     <>
       <div className="flex flex-wrap justify-center">
         {posts &&
-          posts.map(({ title, body }) => (
-            <div className="w-1/5 border mr-4 mb-4 p-2 transition duration-300 ease-in-out bg-white hover:bg-black hover:text-white hover:cursor-pointer   hover:scale-110">
+          posts.map(({ title, body, id }) => (
+            <div
+              key={id}
+              onClick={(event: React.MouseEvent<HTMLElement>) =>
+                handleClick(event, id)
+              }
+              className="flex flex-col w-1/3 border mr-4 mb-4 p-2 transition duration-300 ease-in-out bg-white hover:bg-black hover:text-white hover:cursor-pointer   hover:scale-110"
+            >
               <Heading1 className="line-clamp-3">{title}</Heading1>
               <Paragraph className="line-clamp-6">{body}</Paragraph>
             </div>
