@@ -1,14 +1,17 @@
 import useFetch from '../hooks/useFetch';
 import { Heading1, Paragraph } from '../typography/Headings';
+import { Navigate, useNavigate } from 'react-router-dom';
 
-const Posts = () => {
-  const { data: posts, error } = useFetch(
-    'https://jsonplaceholder.typicode.com/posts',
-    []
-  );
+interface PostsProps {
+  url: string;
+}
+
+const Posts: React.FC<PostsProps> = ({ url }) => {
+  const { data: posts, error } = useFetch(url, []);
+  const navigate = useNavigate();
 
   const handleClick = (event: React.MouseEvent<HTMLElement>, id: number) => {
-    console.log(id);
+    navigate(`url${id}`);
   };
 
   return (

@@ -1,12 +1,13 @@
+import { Route, Routes } from 'react-router-dom';
 import Container from './components/Container';
-import Posts from './components/Posts';
-import { Title } from './typography/Headings';
+import Home from './components/Home';
 
 function App() {
   return (
     <Container>
-      <Title className="underline underline-offset-8">All Posts</Title>
-      <Posts />
+      <Routes>
+        <Route path="/" element={<Home />} />
+      </Routes>
     </Container>
   );
 }
