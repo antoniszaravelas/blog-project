@@ -7,7 +7,7 @@ const Posts = () => {
   );
 
   return (
-    <div>
+    <div className="flex">
       {posts && posts.map(({ title, body }) => <div>{title}</div>)}
       {error && (
         <h2 className="text-orange-800">Sorry, there was an error: {error}</h2>

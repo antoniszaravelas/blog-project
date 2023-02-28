@@ -1,10 +1,11 @@
+import Container from './components/Container';
 import Posts from './components/Posts';
 
 function App() {
   return (
-    <div className="">
+    <Container>
       <Posts />
-    </div>
+    </Container>
   );
 }
 
