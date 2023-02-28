@@ -1,5 +1,6 @@
 import { useParams } from 'react-router-dom';
 import useFetch from '../hooks/useFetch';
+import { Title } from '../typography/Headings';
 import Card from './Card';
 import Container from './Container';
 
@@ -13,14 +14,20 @@ const Comments: React.FC<CommentsProps> = ({ url }) => {
 
   const postComments = comments
     .filter((comment) => comment['postId'] === Number(id))
-    .map((comment) => comment['name']);
+    .map((comment) => ({ name: comment['name'], body: comment['body'] }));
 
   console.log(postComments);
   return (
     <Container>
-      {postComments.map((comment) => (
-        <Card>{comment}</Card>
-      ))}
+      <Title>Comments</Title>
+      <div className="flex flex-wrap border">
+        {postComments.map((comment) => (
+          <>
+            <div className="text-white p-2 w-1/2">{comment.name}</div>
+            <div className="text-white p-2 w-1/2">{comment.body}</div>
+          </>
+        ))}
+      </div>
     </Container>
   );
 };

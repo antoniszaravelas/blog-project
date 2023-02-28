@@ -27,7 +27,7 @@ export const Title: React.FC<TypographyProps> = ({
 }) => {
   return (
     <div
-      className={`font-serif text-white text-5xl text-center mb-10 ${className}`}
+      className={`font-serif text-white text-5xl text-center mb-10 underline underline-offset-8 ${className}`}
     >
       {children}
     </div>

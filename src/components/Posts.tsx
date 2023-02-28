@@ -27,7 +27,10 @@ const Posts: React.FC<PostsProps> = ({ url }) => {
               </div>
 
               <Paragraph className="hover:text-orange-500 italic">
-                more from user {userId}{' '}
+                <div onClick={() => navigate(`/user/${userId}`)}>
+                  {' '}
+                  more from user {userId}{' '}
+                </div>
               </Paragraph>
             </Card>
           ))}
