@@ -4,6 +4,7 @@ import { Navigate, useNavigate } from 'react-router-dom';
 import Card from './Card';
 import Button from './Button';
 import { useEffect, useState } from 'react';
+import SearchBar from './SearchBar';
 
 interface PostsProps {
   url: string;
@@ -27,12 +28,14 @@ const Posts: React.FC<PostsProps> = ({ url }) => {
 
   return (
     <>
+      <SearchBar posts={posts} />
       <div className="flex justify-center px-60">
         {new Array(Math.ceil(posts.length / 5)).fill('0').map((_, index) => (
           <Button
             key={index}
             onClick={() => setButtonNumber(index + 1)}
             text={String(index + 1)}
+            className="w-1/2 py-1 mr-3 rounded-xl"
           ></Button>
         ))}
       </div>
