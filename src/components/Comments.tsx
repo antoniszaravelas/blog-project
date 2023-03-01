@@ -1,7 +1,6 @@
 import { useParams } from 'react-router-dom';
 import useFetch from '../hooks/useFetch';
 import { Title } from '../typography/Headings';
-import Card from './Card';
 import Container from './Container';
 
 interface CommentsProps {
