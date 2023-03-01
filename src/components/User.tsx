@@ -12,6 +12,7 @@ import {
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useEffect, useState } from 'react';
 import Albums from './Albums';
+import { v4 as uuidv4 } from 'uuid';
 
 interface UserProps {
   url: string;
@@ -88,7 +89,7 @@ const User: React.FC<UserProps> = ({ url }) => {
             {' '}
             <div className="flex flex-col justify-center">
               {Object.entries(fetchedUser).map((property) => (
-                <div>
+                <div key={uuidv4()}>
                   <Paragraph className="italic">{property[0]}</Paragraph>
                   <Paragraph className="font-bold">
                     {typeof property[1] === 'object' && property[1] !== null
@@ -96,7 +97,7 @@ const User: React.FC<UserProps> = ({ url }) => {
                           .replace(/{|}/gi, '')
                           .replace(/"/g, '')
                           .split(',')
-                          .map((x) => <div>{x}</div>)
+                          .map((x) => <div key={uuidv4()}>{x}</div>)
                       : property[1]}
                   </Paragraph>
                 </div>
@@ -112,7 +113,7 @@ const User: React.FC<UserProps> = ({ url }) => {
           posts
             .filter((post: any) => post['userId'] === Number(id))
             .map((post: any) => (
-              <Card>
+              <Card key={uuidv4()}>
                 {' '}
                 <div
                   className="flex flex-col justify-center"
@@ -133,7 +134,7 @@ const User: React.FC<UserProps> = ({ url }) => {
           todosArray
             .filter(({ userId }) => userId === Number(id))
             .map(({ title, completed }) => (
-              <div className="flex justify-between">
+              <div key={uuidv4()} className="flex justify-between">
                 <div className="flex items-center p-2 ">
                   <FontAwesomeIcon
                     icon={completed ? faCircleCheck : faXmarkCircle}

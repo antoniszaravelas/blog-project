@@ -33,7 +33,7 @@ const Albums: React.FC<AlbumsComponentProps> = ({ id }) => {
           albums
             .filter((album) => album.userId === Number(id))
             .map(({ title, id: idd }) => (
-              <Card>
+              <Card key={title}>
                 {' '}
                 <div
                   className="flex flex-col justify-center"

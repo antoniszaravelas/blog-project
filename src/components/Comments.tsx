@@ -22,7 +22,7 @@ const Comments: React.FC<CommentsProps> = ({ url }) => {
       <div className="flex flex-col items-center">
         {postComments &&
           postComments.map((comment) => (
-            <Card>
+            <Card key={comment.name}>
               {' '}
               <div className="flex flex-col justify-center">
                 <Heading1>{comment.name}</Heading1>
