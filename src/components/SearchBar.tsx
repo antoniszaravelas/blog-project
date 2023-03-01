@@ -20,6 +20,7 @@ const SearchBar: React.FC<SearchBarProps> = ({ onClick }) => {
 
   const handleClick = () => {
     onClick(inputValue);
+    setInputValue('');
   };
 
   const handleModal = () => {

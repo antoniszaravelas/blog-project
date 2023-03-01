@@ -1,6 +1,47 @@
-# Getting Started with Create React App
+# Interview Task
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Installation
+
+To get the application running, simply clone the repository and
+
+```bash
+npm install
+cd interview_task
+npm run start
+```
+
+## Description
+
+This app communicates with the JSON Placeholder API and:
+
+- Fetches all the Posts and sorts them alphabetically while outputting 5 of them every time
+- Possibility to navigate to the next posts by changing the page
+- Possibility to search for a specific post based on its title
+- Possibility to create a post and send a POST Request by using Axios to JSONPlaceholder
+- By Clicking on a Post the user is able to see the comments made for the specific post
+- By Clicking on the Author of the Post, the user is able to see
+  - Personal Information about the user
+  - Other Recent Posts of the user
+  - A Todo List of the User with Completed and non Completed Things (The things which are completed are crossed out, the user is able to delete a todo-activity as well as check/uncheck it from done/undone and vice versa)
+  - Different Albums that belong to the user
+- By clicking on an Album, photos of the album are fetched and displayed by using grid for layout/design reasons
+- Last but not least, a "HOME" Icon which brings the user to the index page, where they started from.
+
+## Dependencies
+
+- fontAwesome
+- axios
+- react
+- react-dom
+- react-modal
+- react-router-dom
+- typescript
+- uuid
+
+## DevDependencies
+
+- react-modal
+- tailwindcss
 
 ## Available Scripts
 
@@ -39,9 +80,6 @@ Instead, it will copy all the configuration files and the transitive dependencie
 
 You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
 
-## Learn More
+## License
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-# blog-project
+[MIT](https://choosealicense.com/licenses/mit/) blog-projec

@@ -28,14 +28,11 @@ const Posts: React.FC<PostsComponentProps> = ({ url }) => {
   const sortIt = (a: PostProps, b: PostProps) => {
     let textA = a.title.toUpperCase();
     let textB = b.title.toUpperCase();
-
     return textA < textB ? -1 : textA > textB ? 1 : 0;
   };
 
   useEffect(() => {
     setPostsToRender(posts.slice(0, 5).sort(sortIt));
-
-    console.log(postsToRender);
   }, [posts]);
 
   useEffect(() => {
