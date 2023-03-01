@@ -22,8 +22,8 @@ const Posts: React.FC<PostsProps> = ({ url }) => {
                 onClick={() => navigate(`/post/${id}/comments`)}
                 id={id}
               >
-                <Heading1 className="line-clamp-3">{title}</Heading1>
-                <Paragraph className="line-clamp-5">{body}</Paragraph>
+                <Heading1>{title}</Heading1>
+                <Paragraph>{body}</Paragraph>
               </div>
 
               <Paragraph className="hover:text-orange-500 italic">
