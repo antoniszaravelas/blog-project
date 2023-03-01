@@ -38,13 +38,13 @@ const Posts: React.FC<PostsComponentProps> = ({ url }) => {
   return (
     <>
       <SearchBar onClick={handleSearchBar} />
-      <div className="flex justify-center flex-wrap md:flex-nowrap md:px-60">
+      <div className="flex justify-center flex-wrap lg:flex-nowrap lg:px-60">
         {new Array(Math.ceil(posts.length / 5)).fill('0').map((_, index) => (
           <Button
             key={index}
             onClick={() => setButtonNumber(index + 1)}
             text={String(index + 1)}
-            className="md:w-1/2 py-1 w-10 mb-2 md:mb-0 mr-3 rounded-xl"
+            className="lg:w-1/2 py-1 w-10 mb-2 lg:mb-0 mr-3 rounded-xl"
           ></Button>
         ))}
       </div>

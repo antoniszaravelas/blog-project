@@ -1,5 +1,4 @@
 import { Title } from '../typography/Headings';
-import Button from './Button';
 import Container from './Container';
 import Posts from './Posts';
 

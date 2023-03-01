@@ -21,7 +21,8 @@ const customStyles = {
     transform: 'translate(-50%, -50%)',
     backgroundColor: '#18181B',
     width: '70%',
-    height: '70%',
+    height: '80%',
+    borderRadius: '20px',
   },
 };
 
@@ -64,6 +65,7 @@ const ModalComponent: React.FC<ModalComponentProps> = ({
       style={customStyles}
       contentLabel="Example Modal"
       closeTimeoutMS={200}
+      id="modalId"
     >
       <form className="flex flex-col items-center modalForm">
         <Title>Make a Post</Title>
