@@ -1,5 +1,9 @@
 import { useState } from 'react';
 import Button from './Button';
+import { faPlus } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import Modal from 'react-modal';
+import ModalComponent from './Modal';
 
 interface SearchBarProps {
   onClick: (term: string) => void;
@@ -7,10 +11,29 @@ interface SearchBarProps {
 
 const SearchBar: React.FC<SearchBarProps> = ({ onClick }) => {
   const [inputValue, setInputValue] = useState<string>('');
+  Modal.setAppElement(document.getElementById('modal')!);
+  //   let subtitle: any;
+
+  //   modal
+  const [modalIsOpen, setIsOpen] = useState(false);
+  // modal
 
   const handleClick = () => {
     onClick(inputValue);
   };
+
+  const handleModal = () => {
+    setIsOpen(true);
+  };
+
+  function afterOpenModal() {
+    // references are now sync'd and can be accessed.
+    //  subtitle.style.color = '#f00';
+  }
+
+  function closeModal() {
+    setIsOpen(false);
+  }
 
   return (
     <div className="flex flex-col w-1/2 mt-0 mb-10 mx-auto">
@@ -31,7 +54,21 @@ const SearchBar: React.FC<SearchBarProps> = ({ onClick }) => {
           className="rounded-sm px-2"
           text="Search"
         ></Button>
+
+        <Button
+          onClick={handleModal}
+          className="rounded-sm ml-2 px-2"
+          text="Create Post"
+        >
+          <FontAwesomeIcon className="mr-2" icon={faPlus} />
+        </Button>
       </div>
+
+      <ModalComponent
+        modalIsOpen={modalIsOpen}
+        afterOpenModal={afterOpenModal}
+        closeModal={closeModal}
+      />
     </div>
   );
 };

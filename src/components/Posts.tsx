@@ -6,15 +6,24 @@ import Button from './Button';
 import { useEffect, useState } from 'react';
 import SearchBar from './SearchBar';
 
-interface PostsProps {
+interface PostsComponentProps {
   url: string;
 }
 
-const Posts: React.FC<PostsProps> = ({ url }) => {
+interface PostProps {
+  body: string;
+  id: number;
+  title: string;
+  userId: number;
+}
+
+const Posts: React.FC<PostsComponentProps> = ({ url }) => {
   const { data: posts, error } = useFetch(url, []);
   const [buttonNumber, setButtonNumber] = useState(1);
   const [postsToRender, setPostsToRender] = useState([]);
   const navigate = useNavigate();
+
+  console.log(posts);
 
   useEffect(() => {
     setPostsToRender(posts.slice(0, 5));

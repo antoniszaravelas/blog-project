@@ -25,7 +25,7 @@ const Albums: React.FC<AlbumsComponentProps> = ({ id }) => {
 
   return (
     <>
-      <Title className="p-5 bg-green-400 rounded-lg w-1/2 mt-20 mx-auto">
+      <Title className="p-5 bg-green-400 rounded-lg w-1/2  mx-auto">
         Album
       </Title>
       <div className="flex flex-col items-center">

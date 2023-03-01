@@ -8,6 +8,7 @@ const Home = () => {
     <Container>
       <Title>All Posts</Title>
       <Posts url={'https://jsonplaceholder.typicode.com/posts'} />
+      <div id="modal"></div>
     </Container>
   );
 };

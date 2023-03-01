@@ -15,3 +15,9 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.modalForm > div {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 15px;
+}

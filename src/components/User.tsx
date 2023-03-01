@@ -127,10 +127,8 @@ const User: React.FC<UserProps> = ({ url }) => {
       </div>
 
       {/* TODOS */}
-      <Title className="p-5 bg-green-400 rounded-lg w-1/2 mt-20 mx-auto">
-        ToDos:
-      </Title>
-      <div className="bg-white p-10 w-1/2 mx-auto rounded-lg mb-20">
+      <Title className=" bg-green-400 rounded-lg w-1/2  mx-auto">ToDos:</Title>
+      <div className="bg-white p-10 w-1/2 mx-auto rounded-lg">
         {todosArray ? (
           todosArray
             .filter(({ userId }) => userId === Number(id))
