@@ -1,18 +1,36 @@
+import { useState } from 'react';
 import Button from './Button';
 
-const SearchBar = ({ posts }: { posts: [] }) => {
+interface SearchBarProps {
+  onClick: (term: string) => void;
+}
+
+const SearchBar: React.FC<SearchBarProps> = ({ onClick }) => {
+  const [inputValue, setInputValue] = useState<string>('');
+
+  const handleClick = () => {
+    onClick(inputValue);
+  };
+
   return (
-    <div className="flex flex-col mb-10 items-center">
-      <label htmlFor="searchPost" className="text-gray-400 text-2xl">
-        Search Term by Title:
+    <div className="flex flex-col w-1/2 mt-0 mb-10 mx-auto">
+      <label htmlFor="searchPost" className="text-gray-400 text-xl">
+        Search Term:
       </label>
-      <div className="flex w-1/2">
+      <div className="flex">
         <input
           name="searchPost"
-          className="mt-2  bg-gray-500 text-white py-1 pl-3 rounded-md text-lg  border-none focus:outline-none w-1/2"
+          className="mr-3 tracking-wider rounded-sm bg-gray-500 text-white py-1 pl-3  text-lg  border-none focus:outline-none w-1/2"
           type="search"
+          placeholder="search by title..."
+          value={inputValue}
+          onChange={(e) => setInputValue(e.target.value)}
         />
-        <Button className="" text="Search"></Button>
+        <Button
+          onClick={handleClick}
+          className="rounded-sm px-2"
+          text="Search"
+        ></Button>
       </div>
     </div>
   );

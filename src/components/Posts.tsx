@@ -24,11 +24,13 @@ const Posts: React.FC<PostsProps> = ({ url }) => {
     setPostsToRender(posts.slice((buttonNumber - 1) * 5, buttonNumber * 5));
   }, [buttonNumber]);
 
-  console.log(postsToRender);
+  const handleSearchBar = (term: string) => {
+    setPostsToRender(posts.filter((post: any) => post.title.includes(term)));
+  };
 
   return (
     <>
-      <SearchBar posts={posts} />
+      <SearchBar onClick={handleSearchBar} />
       <div className="flex justify-center px-60">
         {new Array(Math.ceil(posts.length / 5)).fill('0').map((_, index) => (
           <Button
