@@ -16,8 +16,9 @@ code {
     monospace;
 }
 
-.modalForm > div {
+.modalForm > div:not(:first-child):not(:last-child) {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   margin-bottom: 15px;
+  width: 100%;
 }

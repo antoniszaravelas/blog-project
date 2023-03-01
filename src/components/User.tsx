@@ -74,7 +74,7 @@ const User: React.FC<UserProps> = ({ url }) => {
   const fetchedUser: FetchedUserProps = users.filter(
     (x) => x['id'] === Number(id)
   )[0];
-  console.log(fetchedUser);
+
   useEffect(() => {
     setTodosArray(todos);
   }, [todos]);

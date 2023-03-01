@@ -16,7 +16,6 @@ const Comments: React.FC<CommentsProps> = ({ url }) => {
     .filter((comment) => comment['postId'] === Number(id))
     .map((comment) => ({ name: comment['name'], body: comment['body'] }));
 
-  console.log(postComments);
   return (
     <Container>
       <Title>Comments</Title>

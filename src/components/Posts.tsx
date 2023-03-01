@@ -23,8 +23,6 @@ const Posts: React.FC<PostsComponentProps> = ({ url }) => {
   const [postsToRender, setPostsToRender] = useState([]);
   const navigate = useNavigate();
 
-  console.log(posts);
-
   useEffect(() => {
     setPostsToRender(posts.slice(0, 5));
   }, [posts]);

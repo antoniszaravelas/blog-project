@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Modal from 'react-modal';
 import { Title } from '../typography/Headings';
 import { useState } from 'react';
+import axios from 'axios';
 
 interface ModalComponentProps {
   modalIsOpen: boolean;
@@ -44,6 +45,15 @@ const ModalComponent: React.FC<ModalComponentProps> = ({
 
   const handleSubmit = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
+
+    axios.post('https://jsonplaceholder.typicode.com/posts', formInfo).then(
+      (response) => {
+        console.log(response);
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
   };
 
   return (
@@ -150,8 +160,7 @@ const ModalComponent: React.FC<ModalComponentProps> = ({
           <textarea
             name="content"
             id="postContent"
-            cols={30}
-            rows={10}
+            className="w-1/2 max-w-1/2 min-w-1/2 h-52 max-h-52 min-h-52"
             onChange={(event) =>
               setFormInfo({ ...formInfo, postContent: event.target.value })
             }
