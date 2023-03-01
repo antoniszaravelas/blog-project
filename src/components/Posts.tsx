@@ -5,6 +5,8 @@ import Card from './Card';
 import Button from './Button';
 import { useEffect, useState } from 'react';
 import SearchBar from './SearchBar';
+import { faUser } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 interface PostsComponentProps {
   url: string;
@@ -23,16 +25,29 @@ const Posts: React.FC<PostsComponentProps> = ({ url }) => {
   const [postsToRender, setPostsToRender] = useState([]);
   const navigate = useNavigate();
 
+  const sortIt = (a: PostProps, b: PostProps) => {
+    let textA = a.title.toUpperCase();
+    let textB = b.title.toUpperCase();
+
+    return textA < textB ? -1 : textA > textB ? 1 : 0;
+  };
+
   useEffect(() => {
-    setPostsToRender(posts.slice(0, 5));
+    setPostsToRender(posts.slice(0, 5).sort(sortIt));
+
+    console.log(postsToRender);
   }, [posts]);
 
   useEffect(() => {
-    setPostsToRender(posts.slice((buttonNumber - 1) * 5, buttonNumber * 5));
+    setPostsToRender(
+      posts.slice((buttonNumber - 1) * 5, buttonNumber * 5).sort(sortIt)
+    );
   }, [buttonNumber]);
 
   const handleSearchBar = (term: string) => {
-    setPostsToRender(posts.filter((post: any) => post.title.includes(term)));
+    setPostsToRender(
+      posts.filter((post: any) => post.title.includes(term)).sort(sortIt)
+    );
   };
 
   return (
@@ -53,7 +68,7 @@ const Posts: React.FC<PostsComponentProps> = ({ url }) => {
           postsToRender.map(({ title, body, id, userId }) => (
             <Card key={id}>
               <div
-                className="flex flex-col justify-center"
+                className="flex flex-col justify-center "
                 onClick={() => navigate(`/post/${id}/comments`)}
                 id={id}
               >
@@ -62,9 +77,16 @@ const Posts: React.FC<PostsComponentProps> = ({ url }) => {
               </div>
 
               <Paragraph className="hover:text-orange-500 italic">
-                <div onClick={() => navigate(`/user/${userId}`)}>
-                  {' '}
-                  more from user {userId}{' '}
+                <div
+                  className="mt-2"
+                  onClick={() => navigate(`/user/${userId}`)}
+                >
+                  <Button
+                    className="rounded p-2"
+                    text={`  more from ${userId}`}
+                  >
+                    <FontAwesomeIcon size="lg" icon={faUser} />
+                  </Button>
                 </div>
               </Paragraph>
             </Card>
