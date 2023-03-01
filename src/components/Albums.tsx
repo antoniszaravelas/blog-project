@@ -2,6 +2,7 @@ import useFetch from '../hooks/useFetch';
 import { Heading1, Title } from '../typography/Headings';
 import Card from './Card';
 import { useNavigate } from 'react-router-dom';
+import ErrorComponent from './ErrorComponent';
 
 interface AlbumsComponentProps {
   id: string | undefined;
@@ -42,6 +43,10 @@ const Albums: React.FC<AlbumsComponentProps> = ({ id }) => {
               </Card>
             ))}
       </div>
+
+      {albumError && (
+        <ErrorComponent>Sorry, there was an error! {albumError}</ErrorComponent>
+      )}
     </>
   );
 };

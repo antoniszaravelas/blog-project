@@ -12,11 +12,8 @@ interface SearchBarProps {
 const SearchBar: React.FC<SearchBarProps> = ({ onClick }) => {
   const [inputValue, setInputValue] = useState<string>('');
   Modal.setAppElement(document.getElementById('modal')!);
-  //   let subtitle: any;
 
-  //   modal
   const [modalIsOpen, setIsOpen] = useState(false);
-  // modal
 
   const handleClick = () => {
     onClick(inputValue);
@@ -26,11 +23,6 @@ const SearchBar: React.FC<SearchBarProps> = ({ onClick }) => {
   const handleModal = () => {
     setIsOpen(true);
   };
-
-  function afterOpenModal() {
-    // references are now sync'd and can be accessed.
-    //  subtitle.style.color = '#f00';
-  }
 
   function closeModal() {
     setIsOpen(false);
@@ -68,11 +60,7 @@ const SearchBar: React.FC<SearchBarProps> = ({ onClick }) => {
         </Button>
       </div>
 
-      <ModalComponent
-        modalIsOpen={modalIsOpen}
-        afterOpenModal={afterOpenModal}
-        closeModal={closeModal}
-      />
+      <ModalComponent modalIsOpen={modalIsOpen} closeModal={closeModal} />
     </div>
   );
 };

@@ -7,6 +7,7 @@ import { useEffect, useState } from 'react';
 import SearchBar from './SearchBar';
 import { faUser } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import ErrorComponent from './ErrorComponent';
 
 interface PostsComponentProps {
   url: string;
@@ -90,9 +91,7 @@ const Posts: React.FC<PostsComponentProps> = ({ url }) => {
           ))}
       </div>
       {error && (
-        <div className="text-orange-800">
-          Sorry, there was an error: {error}
-        </div>
+        <ErrorComponent>Sorry, there was an error! {error}</ErrorComponent>
       )}
     </>
   );

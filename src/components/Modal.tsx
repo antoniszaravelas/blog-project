@@ -7,7 +7,7 @@ import axios from 'axios';
 
 interface ModalComponentProps {
   modalIsOpen: boolean;
-  afterOpenModal: () => void;
+  afterOpenModal?: () => void;
   closeModal: () => void;
 }
 
@@ -60,7 +60,6 @@ const ModalComponent: React.FC<ModalComponentProps> = ({
   return (
     <Modal
       isOpen={modalIsOpen}
-      onAfterOpen={afterOpenModal}
       onRequestClose={closeModal}
       style={customStyles}
       contentLabel="Example Modal"

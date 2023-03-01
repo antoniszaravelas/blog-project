@@ -13,6 +13,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useEffect, useState } from 'react';
 import Albums from './Albums';
 import { v4 as uuidv4 } from 'uuid';
+import ErrorComponent from './ErrorComponent';
 
 interface UserProps {
   url: string;
@@ -52,8 +53,10 @@ interface FetchedUserProps {
 const User: React.FC<UserProps> = ({ url }) => {
   let { id } = useParams();
   const navigate = useNavigate();
-  const { data: users, error }: { data: FetchedUserProps[]; error: string } =
-    useFetch(`${url}`, []);
+  const {
+    data: users,
+    error: userError,
+  }: { data: FetchedUserProps[]; error: string } = useFetch(`${url}`, []);
   const [todosArray, setTodosArray] = useState<TodosProps[]>([
     {
       title: '',
@@ -106,6 +109,11 @@ const User: React.FC<UserProps> = ({ url }) => {
           </Card>
         </div>
       )}
+      {userError && (
+        <ErrorComponent>
+          Sorry, there was an error fetching the User! {userError}
+        </ErrorComponent>
+      )}
 
       <Title>Recent Posts</Title>
       <div className="flex flex-col items-center">
@@ -126,11 +134,15 @@ const User: React.FC<UserProps> = ({ url }) => {
               </Card>
             ))}
       </div>
+      {postsError && (
+        <ErrorComponent>
+          Sorry, there was an error fetching the posts! {postsError}
+        </ErrorComponent>
+      )}
 
-      {/* TODOS */}
       <Title>ToDos:</Title>
       <div className="bg-white md:p-10 p-4 md:w-1/2 mx-auto rounded-lg">
-        {todosArray ? (
+        {todosArray &&
           todosArray
             .filter(({ userId }) => userId === Number(id))
             .map(({ title, completed }) => (
@@ -170,14 +182,14 @@ const User: React.FC<UserProps> = ({ url }) => {
                   icon={faTrash}
                 />
               </div>
-            ))
-        ) : (
-          <div>{todosError}</div>
-        )}
+            ))}
       </div>
-
+      {todosError && (
+        <ErrorComponent>
+          Sorry, there was an error fetching the ToDo List! {todosError}
+        </ErrorComponent>
+      )}
       {/* ALBUM */}
-
       <Albums id={id} />
     </Container>
   );
