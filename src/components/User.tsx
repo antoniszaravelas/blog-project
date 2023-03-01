@@ -88,10 +88,18 @@ const User: React.FC<UserProps> = ({ url }) => {
             {' '}
             <div className="flex flex-col justify-center">
               {Object.entries(fetchedUser).map((property) => (
-                <>
-                  <Paragraph></Paragraph>
-                  <Heading1></Heading1>
-                </>
+                <div>
+                  <Paragraph className="italic">{property[0]}</Paragraph>
+                  <Paragraph className="font-bold">
+                    {typeof property[1] === 'object' && property[1] !== null
+                      ? JSON.stringify(property[1])
+                          .replace(/{|}/gi, '')
+                          .replace(/"/g, '')
+                          .split(',')
+                          .map((x) => <div>{x}</div>)
+                      : property[1]}
+                  </Paragraph>
+                </div>
               ))}
             </div>
           </Card>
