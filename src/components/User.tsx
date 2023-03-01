@@ -4,8 +4,11 @@ import { Heading1, Title, Paragraph } from '../typography/Headings';
 import Card from './Card';
 import Container from './Container';
 import { useNavigate } from 'react-router-dom';
-import { faCircleCheck } from '@fortawesome/free-solid-svg-icons';
-import { faXmarkCircle } from '@fortawesome/free-solid-svg-icons';
+import {
+  faCircleCheck,
+  faXmarkCircle,
+  faTrash,
+} from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useEffect, useState } from 'react';
 
@@ -89,30 +92,41 @@ const User: React.FC<UserProps> = ({ url }) => {
           todosArray
             .filter(({ userId }) => userId === Number(id))
             .map(({ title, completed }) => (
-              <div className="flex items-center">
+              <div className="flex justify-between">
+                <div className="flex items-center p-2 ">
+                  <FontAwesomeIcon
+                    icon={completed ? faCircleCheck : faXmarkCircle}
+                    size="lg"
+                    className={`${
+                      completed ? 'text-green-500' : 'text-red-500'
+                    } mr-2`}
+                  />
+                  <div
+                    onClick={() =>
+                      setTodosArray(
+                        todosArray.map((todo) =>
+                          todo.title === title
+                            ? { ...todo, completed: !todo.completed }
+                            : todo
+                        )
+                      )
+                    }
+                    className={`${
+                      completed ? 'line-through' : ''
+                    } text-gray-500 hover:cursor-pointer`}
+                  >
+                    {title}
+                  </div>
+                </div>
                 <FontAwesomeIcon
-                  icon={completed ? faCircleCheck : faXmarkCircle}
-                  size="lg"
-                  className={`${
-                    completed ? 'text-green-500' : 'text-red-500'
-                  } mr-2`}
-                />
-                <div
                   onClick={() =>
                     setTodosArray(
-                      todosArray.map((todo) =>
-                        todo.title === title
-                          ? { ...todo, completed: !todo.completed }
-                          : todo
-                      )
+                      todosArray.filter((todo) => todo.title !== title)
                     )
                   }
-                  className={`${
-                    completed ? 'line-through' : ''
-                  } text-gray-500 hover:cursor-pointer`}
-                >
-                  {title}
-                </div>
+                  className="text-black hover:cursor-pointer hover:scale-125 hover:text-red-500 transition duration-300 ease-in-out"
+                  icon={faTrash}
+                />
               </div>
             ))
         ) : (
