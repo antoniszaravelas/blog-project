@@ -3,6 +3,7 @@ import useFetch from '../hooks/useFetch';
 import { Title } from '../typography/Headings';
 import Container from './Container';
 import { v4 as uuidv4 } from 'uuid';
+import ErrorComponent from './ErrorComponent';
 
 interface PhotosProps {
   albumId: number;
@@ -29,10 +30,15 @@ const AlbumPhotos = () => {
         {photos &&
           photos
             .filter(({ albumId }) => albumId === Number(albumID))
-            .map(({ title, thumbnailUrl, url }) => (
+            .map(({ title, url }) => (
               <img key={uuidv4()} src={url} alt={title} />
             ))}
       </div>
+      {photosError && (
+        <ErrorComponent>
+          Sorry, there was an error! {photosError}
+        </ErrorComponent>
+      )}
     </Container>
   );
 };
