@@ -8,7 +8,7 @@ export const Heading1: React.FC<TypographyProps> = ({
   className = '',
 }) => {
   return (
-    <div className={`text-2xl font-bold font-mono ${className}`}>
+    <div className={`text-2xl font-bold font-mono  ${className}`}>
       {children}
     </div>
   );
@@ -27,7 +27,7 @@ export const Title: React.FC<TypographyProps> = ({
 }) => {
   return (
     <div
-      className={`font-serif p-5 bg-green-400 rounded-lg md:w-1/2 mx-auto text-black text-5xl text-center my-10 underline underline-offset-8 ${className}`}
+      className={`font-serif md:p-5 p-2 bg-green-400 rounded-lg md:w-1/2 mx-auto text-black md:text-5xl text-4xl text-center my-10 underline md:underline-offset-8 underline-offset-4 ${className}`}
     >
       {children}
     </div>

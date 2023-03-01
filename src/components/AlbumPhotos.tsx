@@ -25,7 +25,7 @@ const AlbumPhotos = () => {
   return (
     <Container>
       <Title>Gallery Album {albumID}</Title>
-      <div className="grid grid-cols-4 p-20 gap-10">
+      <div className="grid md:grid-cols-4 md:gap-10 md:p-20 grid-cols-2 gap-2">
         {photos &&
           photos
             .filter(({ albumId }) => albumId === Number(albumID))

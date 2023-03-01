@@ -1,5 +1,5 @@
 import useFetch from '../hooks/useFetch';
-import { Heading1, Paragraph, Title } from '../typography/Headings';
+import { Heading1, Title } from '../typography/Headings';
 import Card from './Card';
 import { useNavigate } from 'react-router-dom';
 
@@ -25,10 +25,8 @@ const Albums: React.FC<AlbumsComponentProps> = ({ id }) => {
 
   return (
     <>
-      <Title className="p-5 bg-green-400 rounded-lg w-1/2  mx-auto">
-        Album
-      </Title>
-      <div className="flex flex-col items-center">
+      <Title className="mx-auto">Album</Title>
+      <div className="flex flex-col items-start md:items-center">
         {albums &&
           albums
             .filter((album) => album.userId === Number(id))

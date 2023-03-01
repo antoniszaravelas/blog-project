@@ -128,14 +128,14 @@ const User: React.FC<UserProps> = ({ url }) => {
       </div>
 
       {/* TODOS */}
-      <Title className=" bg-green-400 rounded-lg w-1/2  mx-auto">ToDos:</Title>
-      <div className="bg-white p-10 w-1/2 mx-auto rounded-lg">
+      <Title>ToDos:</Title>
+      <div className="bg-white md:p-10 p-4 md:w-1/2 mx-auto rounded-lg">
         {todosArray ? (
           todosArray
             .filter(({ userId }) => userId === Number(id))
             .map(({ title, completed }) => (
-              <div key={uuidv4()} className="flex justify-between">
-                <div className="flex items-center p-2 ">
+              <div key={uuidv4()} className="flex justify-between items-center">
+                <div className="flex items-center md:p-2 p-1 ">
                   <FontAwesomeIcon
                     icon={completed ? faCircleCheck : faXmarkCircle}
                     size="lg"
