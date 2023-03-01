@@ -1,4 +1,5 @@
 import { Route, Routes } from 'react-router-dom';
+import AlbumPhotos from './components/AlbumPhotos';
 import Comments from './components/Comments';
 import Container from './components/Container';
 import Home from './components/Home';
@@ -22,6 +23,7 @@ function App() {
           path="/user/:id"
           element={<User url="https://jsonplaceholder.typicode.com/users" />}
         />
+        <Route path="/user/:id/album/:albumID" element={<AlbumPhotos />} />
       </Routes>
     </div>
   );

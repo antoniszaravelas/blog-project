@@ -11,6 +11,7 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useEffect, useState } from 'react';
+import Albums from './Albums';
 
 interface UserProps {
   url: string;
@@ -84,10 +85,11 @@ const User: React.FC<UserProps> = ({ url }) => {
             </Card>
           ))}
 
+      {/* TODOS */}
       <Title className="p-5 bg-green-400 rounded-lg w-1/2 mt-20 mx-auto">
         ToDos:
       </Title>
-      <div className="bg-white p-10 w-1/2 mx-auto rounded-lg">
+      <div className="bg-white p-10 w-1/2 mx-auto rounded-lg mb-20">
         {todosArray ? (
           todosArray
             .filter(({ userId }) => userId === Number(id))
@@ -133,6 +135,10 @@ const User: React.FC<UserProps> = ({ url }) => {
           <div>{todosError}</div>
         )}
       </div>
+
+      {/* ALBUM */}
+
+      <Albums id={id} />
     </Container>
   );
 };
