@@ -36,7 +36,7 @@ const AlbumPhotos = () => {
       </div>
       {photosError && (
         <ErrorComponent>
-          Sorry, there was an error! {photosError}
+          Sorry, there was an error fetching the Photos! {photosError}
         </ErrorComponent>
       )}
     </Container>

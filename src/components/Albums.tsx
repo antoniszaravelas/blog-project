@@ -45,7 +45,9 @@ const Albums: React.FC<AlbumsComponentProps> = ({ id }) => {
       </div>
 
       {albumError && (
-        <ErrorComponent>Sorry, there was an error! {albumError}</ErrorComponent>
+        <ErrorComponent>
+          Sorry, there was an error fetching the Album names! {albumError}
+        </ErrorComponent>
       )}
     </>
   );
