@@ -1,6 +1,6 @@
 import useFetch from '../hooks/useFetch';
 import { Heading1, Paragraph } from '../typography/Headings';
-import { Navigate, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import Card from './Card';
 import Button from './Button';
 import { useEffect, useState } from 'react';
