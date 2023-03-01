@@ -24,10 +24,35 @@ interface TodosProps {
   completed: boolean;
 }
 
+interface FetchedUserProps {
+  id: number;
+  name: string;
+  username: string;
+  email: string;
+  address: {
+    city: string;
+    geo: {
+      lat: string;
+      lng: string;
+    };
+    street: string;
+    suite: string;
+    zipcode: string;
+  };
+  company: {
+    name: string;
+    catchPhrase: string;
+    bs: string;
+  };
+  website: string;
+  phone: string;
+}
+
 const User: React.FC<UserProps> = ({ url }) => {
   let { id } = useParams();
   const navigate = useNavigate();
-  const { data: users, error } = useFetch(`${url}`, []);
+  const { data: users, error }: { data: FetchedUserProps[]; error: string } =
+    useFetch(`${url}`, []);
   const [todosArray, setTodosArray] = useState<TodosProps[]>([
     {
       title: '',
@@ -46,8 +71,10 @@ const User: React.FC<UserProps> = ({ url }) => {
     []
   );
 
-  const [fetchedUser]: any = users.filter((x) => x['id'] === Number(id));
-
+  const fetchedUser: FetchedUserProps = users.filter(
+    (x) => x['id'] === Number(id)
+  )[0];
+  console.log(fetchedUser);
   useEffect(() => {
     setTodosArray(todos);
   }, [todos]);
@@ -56,34 +83,40 @@ const User: React.FC<UserProps> = ({ url }) => {
     <Container>
       <Title>Information</Title>
       {fetchedUser && (
-        <ul className="text-white">
-          <li>Name: {fetchedUser.name}</li>
-          <li>Username: {fetchedUser.username}</li>
-          <li>Email: {fetchedUser.email}</li>
-          <li>Address(Street): {fetchedUser.address.street}</li>
-          <li>Company: {fetchedUser.company.name}</li>
-          <li>Phone: {fetchedUser.phone}</li>
-          <li>Website: {fetchedUser.website}</li>
-        </ul>
+        <div className="flex flex-col items-center">
+          <Card>
+            {' '}
+            <div className="flex flex-col justify-center">
+              {Object.entries(fetchedUser).map((property) => (
+                <>
+                  <Paragraph></Paragraph>
+                  <Heading1></Heading1>
+                </>
+              ))}
+            </div>
+          </Card>
+        </div>
       )}
 
       <Title>Recent Posts</Title>
-      {posts &&
-        posts
-          .filter((post: any) => post['userId'] === Number(id))
-          .map((post: any) => (
-            <Card>
-              {' '}
-              <div
-                className="flex flex-col justify-center"
-                onClick={() => navigate(`/post/${id}/comments`)}
-                id={id}
-              >
-                <Heading1>{post.title}</Heading1>
-                <Paragraph>{post.body}</Paragraph>
-              </div>
-            </Card>
-          ))}
+      <div className="flex flex-col items-center">
+        {posts &&
+          posts
+            .filter((post: any) => post['userId'] === Number(id))
+            .map((post: any) => (
+              <Card>
+                {' '}
+                <div
+                  className="flex flex-col justify-center"
+                  onClick={() => navigate(`/post/${id}/comments`)}
+                  id={id}
+                >
+                  <Heading1>{post.title}</Heading1>
+                  <Paragraph>{post.body}</Paragraph>
+                </div>
+              </Card>
+            ))}
+      </div>
 
       {/* TODOS */}
       <Title className="p-5 bg-green-400 rounded-lg w-1/2 mt-20 mx-auto">

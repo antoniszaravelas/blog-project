@@ -1,6 +1,7 @@
 import { useParams } from 'react-router-dom';
 import useFetch from '../hooks/useFetch';
-import { Title } from '../typography/Headings';
+import { Heading1, Paragraph, Title } from '../typography/Headings';
+import Card from './Card';
 import Container from './Container';
 
 interface CommentsProps {
@@ -19,13 +20,16 @@ const Comments: React.FC<CommentsProps> = ({ url }) => {
   return (
     <Container>
       <Title>Comments</Title>
-      <div className="flex flex-wrap border">
+      <div className="flex flex-col items-center">
         {postComments &&
           postComments.map((comment) => (
-            <div key={comment.name}>
-              <div className="text-white p-2 w-1/2">{comment.name}</div>
-              <div className="text-white p-2 w-1/2">{comment.body}</div>
-            </div>
+            <Card>
+              {' '}
+              <div className="flex flex-col justify-center">
+                <Heading1>{comment.name}</Heading1>
+                <Paragraph>{comment.body}</Paragraph>
+              </div>
+            </Card>
           ))}
       </div>
     </Container>

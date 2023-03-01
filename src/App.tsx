@@ -1,16 +1,23 @@
 import { Route, Routes } from 'react-router-dom';
 import AlbumPhotos from './components/AlbumPhotos';
 import Comments from './components/Comments';
-import Container from './components/Container';
 import Home from './components/Home';
 import User from './components/User';
+import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
+import { Link } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 function App() {
   return (
     <div className="bg-zinc-900 h-screen">
-      <a className="text-white bg-black" href="/">
-        home
-      </a>
+      <Link to="/">
+        <FontAwesomeIcon
+          size="xl"
+          className="text-white ml-4"
+          icon={faArrowLeft}
+        />
+        <span className="text-white ml-4 italic">Back to Home</span>
+      </Link>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route
