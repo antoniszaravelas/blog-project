@@ -2,6 +2,7 @@ import { useParams } from 'react-router-dom';
 import useFetch from '../hooks/useFetch';
 import { Title } from '../typography/Headings';
 import Container from './Container';
+import { v4 as uuidv4 } from 'uuid';
 
 interface PhotosProps {
   albumId: number;
@@ -29,7 +30,7 @@ const AlbumPhotos = () => {
           photos
             .filter(({ albumId }) => albumId === Number(albumID))
             .map(({ title, thumbnailUrl, url }) => (
-              <img src={url} alt={title} />
+              <img key={uuidv4()} src={url} alt={title} />
             ))}
       </div>
     </Container>
