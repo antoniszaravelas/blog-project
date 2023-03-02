@@ -87,13 +87,13 @@ const Posts: React.FC<PostsComponentProps> = ({ url }) => {
   return (
     <>
       <SearchBar onClick={handleSearchBar} />
-      <div className="flex justify-center flex-wrap lg:flex-nowrap lg:px-60">
+      <div className="flex justify-center  lg:flex-nowrap lg:w-1/2 mx-auto">
         <Button
           onClick={() => {
             previousOrNext('previous');
             if (buttonArray) setButtonNumber(Number(buttonArray[0]));
           }}
-          className="rounded mr-3 px-2 py-1"
+          className="lg:w-1/2 py-1 px-1 w-18 mb-2 lg:mb-0 mr-3 rounded-sm"
           text="previous"
         ></Button>
 
@@ -125,7 +125,7 @@ const Posts: React.FC<PostsComponentProps> = ({ url }) => {
                 : buttonNumber + 1
             );
           }}
-          className="rounded mr-3 px-2 py-1"
+          className="lg:w-1/2 py-1 px-1 w-24 mb-2 lg:mb-0  rounded-sm"
           text="next"
         ></Button>
       </div>
