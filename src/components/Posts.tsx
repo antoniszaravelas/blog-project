@@ -40,6 +40,7 @@ const Posts: React.FC<PostsComponentProps> = ({ url }) => {
     setPostsToRender(
       posts.slice((buttonNumber - 1) * 5, buttonNumber * 5).sort(sortIt)
     );
+    console.log(buttonNumber);
   }, [buttonNumber]);
 
   const handleSearchBar = (term: string) => {
@@ -48,10 +49,21 @@ const Posts: React.FC<PostsComponentProps> = ({ url }) => {
     );
   };
 
+  const buttonArray: any = [];
+
   return (
     <>
       <SearchBar onClick={handleSearchBar} />
       <div className="flex justify-center flex-wrap lg:flex-nowrap lg:px-60">
+        <Button
+          onClick={() =>
+            setButtonNumber(
+              buttonNumber === 1 ? buttonNumber : buttonNumber - 1
+            )
+          }
+          className="rounded mr-3 px-2 py-1"
+          text="previous"
+        ></Button>
         {new Array(Math.ceil(posts.length / 5)).fill('0').map((_, index) => (
           <Button
             key={index}
@@ -60,6 +72,17 @@ const Posts: React.FC<PostsComponentProps> = ({ url }) => {
             className="lg:w-1/2 py-1 w-10 mb-2 lg:mb-0 mr-3 rounded-xl"
           ></Button>
         ))}
+        <Button
+          onClick={() =>
+            setButtonNumber(
+              buttonNumber === Math.ceil(posts.length / 5)
+                ? Math.ceil(posts.length / 5)
+                : buttonNumber + 1
+            )
+          }
+          className="rounded mr-3 px-2 py-1"
+          text="next"
+        ></Button>
       </div>
       <div className="flex flex-wrap justify-center mt-10">
         {postsToRender &&
