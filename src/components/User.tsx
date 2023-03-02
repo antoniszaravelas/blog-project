@@ -121,7 +121,11 @@ const User: React.FC<UserProps> = ({ url }) => {
           posts
             .filter((post: any) => post['userId'] === Number(id))
             .map((post: any) => (
-              <Card key={uuidv4()}>
+              <Card
+                className="transition duration-300 ease-in-out hover:bg-black hover:text-white hover:cursor-pointer   hover:scale-110
+              "
+                key={uuidv4()}
+              >
                 {' '}
                 <div
                   className="flex flex-col justify-center"

@@ -6,7 +6,11 @@ module.exports = {
 
   ],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily:{
+        "robotoMono": ["Roboto Mono", "sans-serif"]
+      }
+    },
   },
   plugins: [
     require('@tailwindcss/line-clamp'),

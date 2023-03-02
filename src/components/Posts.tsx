@@ -8,6 +8,7 @@ import SearchBar from './SearchBar';
 import { faUser } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import ErrorComponent from './ErrorComponent';
+import { v4 as uuidv4 } from 'uuid';
 
 interface PostsComponentProps {
   url: string;
@@ -43,7 +44,6 @@ const Posts: React.FC<PostsComponentProps> = ({ url }) => {
     setPostsToRender(
       posts.slice((buttonNumber - 1) * 5, buttonNumber * 5).sort(sortIt)
     );
-    console.log(buttonNumber);
   }, [buttonNumber]);
 
   const handleSearchBar = (term: string) => {
@@ -79,7 +79,6 @@ const Posts: React.FC<PostsComponentProps> = ({ url }) => {
         }
         return x;
       });
-      console.log(newButtonArray);
       setButtonArray(newButtonArray);
     }
   };
@@ -100,8 +99,9 @@ const Posts: React.FC<PostsComponentProps> = ({ url }) => {
         {buttonArray &&
           buttonArray.map((button: string | number) => (
             <Button
+              key={uuidv4()}
               className={`lg:w-1/2 py-1 w-10 mb-2 lg:mb-0 mr-3 rounded-xl ${
-                buttonNumber === Number(button) ? 'bg-green-300' : ''
+                buttonNumber === Number(button) ? 'bg-green-200' : ''
               }`}
               text={String(button)}
               onClick={() => {
@@ -152,7 +152,7 @@ const Posts: React.FC<PostsComponentProps> = ({ url }) => {
                   onClick={() => navigate(`/user/${userId}`)}
                 >
                   <Button className="rounded p-2" text={`more from ${userId}`}>
-                    <FontAwesomeIcon size="lg" icon={faUser} />
+                    <FontAwesomeIcon size="lg" className="mr-2" icon={faUser} />
                   </Button>
                 </div>
               </Paragraph>
