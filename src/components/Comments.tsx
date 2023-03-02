@@ -3,6 +3,7 @@ import useFetch from '../hooks/useFetch';
 import { Heading1, Paragraph, Title } from '../typography/Headings';
 import Card from './Card';
 import Container from './Container';
+import ErrorComponent from './ErrorComponent';
 
 interface CommentsProps {
   url: string;
@@ -10,7 +11,7 @@ interface CommentsProps {
 
 const Comments: React.FC<CommentsProps> = ({ url }) => {
   let { id } = useParams();
-  const { data: comments, error } = useFetch(url, []);
+  const { data: comments, error: errorComments } = useFetch(url, []);
 
   const postComments = comments
     .filter((comment) => comment['postId'] === Number(id))
@@ -35,6 +36,12 @@ const Comments: React.FC<CommentsProps> = ({ url }) => {
             </Card>
           ))}
       </div>
+
+      {errorComments && (
+        <ErrorComponent>
+          There was an error rendering the comments! {errorComments}
+        </ErrorComponent>
+      )}
     </Container>
   );
 };

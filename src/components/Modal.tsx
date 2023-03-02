@@ -31,7 +31,6 @@ const modalInputStyle =
 
 const ModalComponent: React.FC<ModalComponentProps> = ({
   modalIsOpen,
-  afterOpenModal,
   closeModal,
 }) => {
   const [formInfo, setFormInfo] = useState({

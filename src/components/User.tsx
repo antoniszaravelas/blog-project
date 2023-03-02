@@ -115,6 +115,7 @@ const User: React.FC<UserProps> = ({ url }) => {
         </ErrorComponent>
       )}
 
+      {/* Recent Posts */}
       <Title>Recent Posts</Title>
       <div className="flex flex-col items-center">
         {posts &&
@@ -144,6 +145,7 @@ const User: React.FC<UserProps> = ({ url }) => {
         </ErrorComponent>
       )}
 
+      {/* TODOS */}
       <Title>ToDos:</Title>
       <div className="bg-white md:p-10 p-4 md:w-1/2 mx-auto rounded-lg">
         {todosArray &&
@@ -193,6 +195,7 @@ const User: React.FC<UserProps> = ({ url }) => {
           Sorry, there was an error fetching the ToDo List! {todosError}
         </ErrorComponent>
       )}
+
       {/* ALBUM */}
       <Albums id={id} />
     </Container>

@@ -28,15 +28,8 @@ const Posts: React.FC<PostsComponentProps> = ({ url }) => {
   const [buttonArray, setButtonArray] = useState<(string | number)[]>();
   const navigate = useNavigate();
 
-  const sortIt = (a: PostProps, b: PostProps) => {
-    let textA = a.title.toUpperCase();
-    let textB = b.title.toUpperCase();
-    return textA < textB ? -1 : textA > textB ? 1 : 0;
-  };
-
   useEffect(() => {
     setPostsToRender(posts.slice(0, 5).sort(sortIt));
-
     setButtonArray(['1', '2', '...', posts.length / 5 - 1, posts.length / 5]);
   }, [posts]);
 
@@ -52,7 +45,7 @@ const Posts: React.FC<PostsComponentProps> = ({ url }) => {
     );
   };
 
-  const previousOrNext = (arg: 'previous' | 'next') => {
+  function previousOrNext(arg: 'previous' | 'next') {
     if (
       buttonArray &&
       (buttonArray[0] !== '1' ||
@@ -65,23 +58,27 @@ const Posts: React.FC<PostsComponentProps> = ({ url }) => {
             Number(x) < Number(buttonArray[buttonArray.length - 1]) - 2 &&
             buttonArray[index + 1] !==
               Number(buttonArray[buttonArray.length - 1]) - 2
-          ) {
+          )
             return Number(x) + 1;
-          }
         } else {
           if (
             index < buttonArray.indexOf('...') &&
             Number(x) > 1 &&
             Number(buttonArray[0]) !== 1
-          ) {
+          )
             return Number(x) - 1;
-          }
         }
         return x;
       });
       setButtonArray(newButtonArray);
     }
-  };
+  }
+
+  function sortIt(a: PostProps, b: PostProps) {
+    let textA = a.title.toUpperCase();
+    let textB = b.title.toUpperCase();
+    return textA < textB ? -1 : textA > textB ? 1 : 0;
+  }
 
   return (
     <>
@@ -129,6 +126,7 @@ const Posts: React.FC<PostsComponentProps> = ({ url }) => {
           text="next"
         ></Button>
       </div>
+
       <div className="flex flex-wrap justify-center mt-10">
         {postsToRender &&
           postsToRender.map(({ title, body, id, userId }) => (
@@ -160,7 +158,9 @@ const Posts: React.FC<PostsComponentProps> = ({ url }) => {
           ))}
       </div>
       {error && (
-        <ErrorComponent>Sorry, there was an error! {error}</ErrorComponent>
+        <ErrorComponent>
+          Sorry, there was an error rendering the posts! {error}
+        </ErrorComponent>
       )}
     </>
   );

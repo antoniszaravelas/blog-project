@@ -1,5 +1,3 @@
-import { Title } from '../typography/Headings';
-
 interface ErrorComponentProps {
   children?: React.ReactNode;
 }
