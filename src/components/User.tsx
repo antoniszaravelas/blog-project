@@ -88,7 +88,7 @@ const User: React.FC<UserProps> = ({ url }) => {
       <Title>Information</Title>
       {fetchedUser && (
         <div className="flex flex-col items-center">
-          <Card className="transition-none hover:bg-white hover:text-black hover:cursor-auto hover:scale-100">
+          <Card>
             {' '}
             <div className="flex flex-col justify-center">
               {Object.entries(fetchedUser).map((property) => (

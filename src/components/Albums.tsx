@@ -32,7 +32,11 @@ const Albums: React.FC<AlbumsComponentProps> = ({ id }) => {
           albums
             .filter((album) => album.userId === Number(id))
             .map(({ title, id: idd }) => (
-              <Card key={title}>
+              <Card
+                className="transition duration-300 ease-in-out hover:bg-black hover:text-white hover:cursor-pointer   hover:scale-110
+              "
+                key={title}
+              >
                 {' '}
                 <div
                   className="flex flex-col justify-center"

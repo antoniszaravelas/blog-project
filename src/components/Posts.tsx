@@ -132,7 +132,11 @@ const Posts: React.FC<PostsComponentProps> = ({ url }) => {
       <div className="flex flex-wrap justify-center mt-10">
         {postsToRender &&
           postsToRender.map(({ title, body, id, userId }) => (
-            <Card key={id}>
+            <Card
+              className="transition duration-300 ease-in-out hover:bg-black hover:text-white hover:cursor-pointer   hover:scale-110
+            "
+              key={id}
+            >
               <div
                 className="flex flex-col justify-center "
                 onClick={() => navigate(`/post/${id}/comments`)}
