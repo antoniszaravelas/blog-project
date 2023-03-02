@@ -24,6 +24,7 @@ const Posts: React.FC<PostsComponentProps> = ({ url }) => {
   const { data: posts, error } = useFetch(url, []);
   const [buttonNumber, setButtonNumber] = useState(1);
   const [postsToRender, setPostsToRender] = useState([]);
+  const [buttonArray, setButtonArray] = useState<(string | number)[]>();
   const navigate = useNavigate();
 
   const sortIt = (a: PostProps, b: PostProps) => {
@@ -34,6 +35,8 @@ const Posts: React.FC<PostsComponentProps> = ({ url }) => {
 
   useEffect(() => {
     setPostsToRender(posts.slice(0, 5).sort(sortIt));
+
+    setButtonArray(['1', '2', '...', posts.length / 5 - 1, posts.length / 5]);
   }, [posts]);
 
   useEffect(() => {
@@ -49,37 +52,79 @@ const Posts: React.FC<PostsComponentProps> = ({ url }) => {
     );
   };
 
-  const buttonArray: any = [];
+  const previousOrNext = (arg: 'previous' | 'next') => {
+    if (
+      buttonArray &&
+      (buttonArray[0] !== '1' ||
+        buttonArray[buttonArray.length] !== posts.length / 5)
+    ) {
+      const newButtonArray = buttonArray.map((x, index) => {
+        if (arg === 'next') {
+          if (
+            index < buttonArray.indexOf('...') &&
+            Number(x) < Number(buttonArray[buttonArray.length - 1]) - 2 &&
+            buttonArray[index + 1] !==
+              Number(buttonArray[buttonArray.length - 1]) - 2
+          ) {
+            return Number(x) + 1;
+          }
+        } else {
+          if (
+            index < buttonArray.indexOf('...') &&
+            Number(x) > 1 &&
+            Number(buttonArray[0]) !== 1
+          ) {
+            return Number(x) - 1;
+          }
+        }
+        return x;
+      });
+      console.log(newButtonArray);
+      setButtonArray(newButtonArray);
+    }
+  };
 
   return (
     <>
       <SearchBar onClick={handleSearchBar} />
       <div className="flex justify-center flex-wrap lg:flex-nowrap lg:px-60">
         <Button
-          onClick={() =>
-            setButtonNumber(
-              buttonNumber === 1 ? buttonNumber : buttonNumber - 1
-            )
-          }
+          onClick={() => {
+            previousOrNext('previous');
+            if (buttonArray) setButtonNumber(Number(buttonArray[0]));
+          }}
           className="rounded mr-3 px-2 py-1"
           text="previous"
         ></Button>
-        {new Array(Math.ceil(posts.length / 5)).fill('0').map((_, index) => (
-          <Button
-            key={index}
-            onClick={() => setButtonNumber(index + 1)}
-            text={String(index + 1)}
-            className="lg:w-1/2 py-1 w-10 mb-2 lg:mb-0 mr-3 rounded-xl"
-          ></Button>
-        ))}
+
+        {buttonArray &&
+          buttonArray.map((button: string | number) => (
+            <Button
+              className={`lg:w-1/2 py-1 w-10 mb-2 lg:mb-0 mr-3 rounded-xl ${
+                buttonNumber === Number(button) ? 'bg-green-300' : ''
+              }`}
+              text={String(button)}
+              onClick={() => {
+                if (button === '...') {
+                  previousOrNext('next');
+                }
+                setButtonNumber(
+                  button === '...'
+                    ? Number(buttonArray[buttonArray.indexOf('...') - 1])
+                    : Number(button)
+                );
+              }}
+            ></Button>
+          ))}
         <Button
-          onClick={() =>
+          onClick={() => {
+            previousOrNext('next');
             setButtonNumber(
               buttonNumber === Math.ceil(posts.length / 5)
                 ? Math.ceil(posts.length / 5)
                 : buttonNumber + 1
-            )
-          }
+            );
+          }}
           className="rounded mr-3 px-2 py-1"
           text="next"
         ></Button>
