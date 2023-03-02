@@ -93,7 +93,7 @@ const Posts: React.FC<PostsComponentProps> = ({ url }) => {
             previousOrNext('previous');
             if (buttonArray) setButtonNumber(Number(buttonArray[0]));
           }}
-          className="lg:w-1/2 py-1 px-1 w-18 mb-2 lg:mb-0 mr-3 rounded-sm"
+          className="lg:w-1/2 py-1 px-1 w-18 mb-2 lg:mb-0 mr-3 rounded-md"
           text="previous"
         ></Button>
 
@@ -125,7 +125,7 @@ const Posts: React.FC<PostsComponentProps> = ({ url }) => {
                 : buttonNumber + 1
             );
           }}
-          className="lg:w-1/2 py-1 px-1 w-24 mb-2 lg:mb-0  rounded-sm"
+          className="lg:w-1/2 py-1 px-1 w-24 mb-2 lg:mb-0  rounded-md"
           text="next"
         ></Button>
       </div>
@@ -151,10 +151,7 @@ const Posts: React.FC<PostsComponentProps> = ({ url }) => {
                   className="mt-2"
                   onClick={() => navigate(`/user/${userId}`)}
                 >
-                  <Button
-                    className="rounded p-2"
-                    text={`  more from ${userId}`}
-                  >
+                  <Button className="rounded p-2" text={`more from ${userId}`}>
                     <FontAwesomeIcon size="lg" icon={faUser} />
                   </Button>
                 </div>

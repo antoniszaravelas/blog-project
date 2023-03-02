@@ -63,7 +63,6 @@ const ModalComponent: React.FC<ModalComponentProps> = ({
       onRequestClose={closeModal}
       style={customStyles}
       contentLabel="Example Modal"
-      closeTimeoutMS={200}
       id="modalId"
     >
       <form className="flex flex-col items-center modalForm">
