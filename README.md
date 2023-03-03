@@ -6,7 +6,7 @@ To get the application running, simply clone the repository and
 
 ```bash
 npm install
-cd interview_task
+cd blog project
 npm run start
 ```
 
